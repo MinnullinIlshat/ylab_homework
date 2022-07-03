@@ -38,8 +38,7 @@ class Route:
     def _get_points(self, points):
         """points - последовательность кортежей с координатами"""
         for point in points:
-            x, y, address = point
-            self.points.append(Point(x, y, address))
+            self.points.append(Point(*point))
 
     def _get_route(self, points):
         """принимает кортеж с последовательностью точек, добавляет начало и конец"""
