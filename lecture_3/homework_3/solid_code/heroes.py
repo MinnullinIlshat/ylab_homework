@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 import random
 
 class SuperHero(ABC):
@@ -10,19 +10,6 @@ class SuperHero(ABC):
     def find(self, place):
         place.get_antagonist()
 
-    @abstractmethod
-    def attack(self):
-        pass
-
-
-class Soldier(SuperHero):
-    """боевые искусства и огнестрельное оружие"""
-    def a_roundhouse_kick(self):
-        print('Bump')
-
-    def a_fire_a_gun(self):
-        print('PIU PIU')
-
     def attack(self):
         cls = type(self)
         attack_funcs = [func for func in dir(cls) if func.startswith('a_')]
@@ -31,7 +18,23 @@ class Soldier(SuperHero):
         eval(cmd)
 
 
-class Superman(Soldier):
+class Fighter(SuperHero):
+    """Боевые исскусства"""
+    def a_roundhouse_kick(self):
+        print('Bump')
+
+
+class Shooter(SuperHero):
+    """огнестрельное оружие"""
+    def a_fire_a_gun(self):
+        print('PIU PIU')
+
+class Soldier(Fighter, Shooter):
+    """боевые искусства и огнестрельное оружие"""
+    pass
+
+
+class Superman(Fighter):
 
     def __init__(self):
         super(Superman, self).__init__('Clark Kent', True)
