@@ -3,7 +3,9 @@ import functools
 def memo_decorator(func):
     @functools.wraps(func)
     def wrapper(arg):
-        return wrapper.dict.setdefault(arg, func(arg))
+        if arg not in wrapper.dict:
+            wrapper.dict[arg] = func(arg)
+        return wrapper.dict[arg]
     wrapper.dict = {}
     return wrapper
 
