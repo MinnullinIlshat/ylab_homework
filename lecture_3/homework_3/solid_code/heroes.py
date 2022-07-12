@@ -29,9 +29,13 @@ class Shooter(SuperHero):
     def a_fire_a_gun(self):
         print('PIU PIU')
 
+    def a_headshot(self):
+        print('HEADSHOT!')
+
 class Soldier(Fighter, Shooter):
     """боевые искусства и огнестрельное оружие"""
-    pass
+    def call_for_reinforcment(self):
+        print(f'{self.name} вызывает подкрепление!')
 
 
 class Superman(Fighter):
@@ -45,3 +49,6 @@ class Superman(Fighter):
     def ultimate(self):
         self.incinerate_with_lasers()
 
+    def a_speeding_bullet(self):
+        """летит к врагу и бьет с разона"""
+        print('KTANG!')
