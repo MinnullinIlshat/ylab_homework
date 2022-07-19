@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from pydantic import BaseModel
 
@@ -24,4 +25,4 @@ class PostModel(PostBase):
 
 
 class PostListResponse(BaseModel):
-    posts: list[PostModel] = []
+    posts: List[PostModel] = []
