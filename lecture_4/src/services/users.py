@@ -8,7 +8,6 @@ from passlib.hash import pbkdf2_sha256
 from redis import Redis
 from sqlmodel import Session
 
-
 from src.db import AbstractCache, get_cache, get_session
 from src.db.redis_storage import (
     get_active_refresh_token,
@@ -23,7 +22,6 @@ from src.core.config import (
     JWT_SECRET_KEY,
     JWT_ALGORITHM
     )
-
 
 class UserServis(ServiceMixin):
     def __init__(
@@ -109,7 +107,6 @@ class UserServis(ServiceMixin):
             return self.create_jwt(user=user)
         else:
             raise ValueError
-
 
 @lru_cache()
 def get_user_service(

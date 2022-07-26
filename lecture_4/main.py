@@ -1,8 +1,6 @@
 import redis
 import uvicorn
 from fastapi import FastAPI
-
-
 from src.api.v1.resources import posts, users, auth
 from src.core import config
 from src.db import cache, redis_cache
@@ -18,7 +16,6 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
 )
 
-
 @app.get("/")
 def root():
     return {"service": config.PROJECT_NAME, "version": config.VERSION}
@@ -33,19 +30,15 @@ def startup():
         )
     )
 
-
 @app.on_event("shutdown")
 def shutdown():
     """Отключаемся от баз при выключении сервера"""
     cache.cache.close()
 
-
 # Подключаем роутеры к серверу
 app.include_router(router=posts.router, prefix="/api/v1/posts")
 app.include_router(router=users.router, prefix='/api/v1/users')
 app.include_router(router=auth.router, prefix='/api/v1')
-
-
 
 if __name__ == "__main__":
     # Приложение может запускаться командой
